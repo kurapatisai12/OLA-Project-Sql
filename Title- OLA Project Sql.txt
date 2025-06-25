@@ -1,0 +1,198 @@
+Title:- OLA Project Sql
+
+Description:- 
+
+1.Create and use the database, view the data:-
+Code :-
+	create database ola;
+	use ola;
+	select * from ola;
+
+Note :-
+	CREATE DATABASE ola; — Creates a new database named ola.
+	USE ola; — Selects the ola database for use.
+	SELECT * FROM ola; — Displays all records from the ola table.
+
+These commands create a new database named ola, select it for use, and display all records from the ola table.
+
+2. Query # 1 – Retrieve Successful Bookings:-
+Code :-
+	SELECT * FROM ola
+	WHERE Booking_Status = 'Success';
+
+Note :-
+	Retrieve All Successful Bookings
+	Query to fetch records where booking was successful.
+	SELECT * FROM ola WHERE Booking_Status = 'Success';
+
+Fetches all records where the ride was completed successfully.
+
+3. Query # 2. Find the average ride distance for each vehicle type:-
+Code :-
+ 	SELECT Vehicle_Type, AVG(Ride_Distance) as avg_distance 
+	FROM ola
+ 	GROUP BY Vehicle_Type;
+
+Note :-
+	Average Ride Distance per Vehicle Type
+	Calculates average distance travelled grouped by vehicle type.
+	SELECT Vehicle_Type, AVG(Ride_Distance) AS avg_distance FROM ola GROUP BY Vehicle_Type;
+
+Calculates the average distance of rides for each type of vehicle.
+
+4. Query # 3. Get the total number of cancelled rides by customers:-
+Code :-
+ 	SELECT COUNT(*) FROM ola
+ 	WHERE Booking_Status = 'canceled by Customer';
+
+Note :-
+	Total Cancelled Rides by Customers
+	Counts all rides cancelled by customers.
+	SELECT COUNT(*) FROM ola WHERE Booking_Status = 'canceled by Customer';
+
+Counts how many bookings  were cancelled by customers.
+
+5. Query # 4. List the top 5 customers who booked the highest number of rides:-
+Code :-
+ 	SELECT Customer_ID, COUNT(Booking_ID) as total_rides
+ 	FROM ola
+ 	GROUP BY Customer_ID
+ 	ORDER BY total_rides DESC LIMIT 5;
+
+Note :-
+	Top 5 Customers by Ride Count
+	Lists 5 customers who booked the highest number of rides.
+	SELECT Customer_ID, COUNT(Booking_ID) AS total_rides FROM ola GROUP BY Customer_ID ORDER BY total_rides DESC LIMIT 5;
+
+Lists the top 5 customers who booked the most rides, sorted by total bookings.
+
+6. Query # 5. Get the number of rides cancelled by drivers due to personal and car-related issues:-
+Code :-
+ 	SELECT COUNT(*) FROM ola
+ 	WHERE canceled_Rides_by_Driver = 'Personal & Car related issue';
+
+Note :-
+	Driver Cancellations (Personal/Car Issues)
+	Counts rides cancelled by drivers due to specific reasons.
+	SELECT COUNT(*) FROM ola WHERE canceled_Rides_by_Driver = 'Personal & Car related issue';
+
+Counts cancellations by drivers for specific personal or vehicle issues.
+
+
+7. Query # 6. Find the maximum and minimum driver ratings for Prime Sedan bookings:-
+Code :-
+ 	SELECT MAX(Driver_Ratings) as max_rating,
+ 	MIN(Driver_Ratings) as min_rating
+ 	FROM ola WHERE Vehicle_Type = 'Prime Sedan';
+
+
+Note :-
+	Driver Rating Extremes for Prime Sedan
+	Gets highest and lowest driver ratings for Prime Sedan.
+	SELECT MAX(Driver_Ratings) AS max_rating, MIN(Driver_Ratings) AS min_rating FROM ola WHERE Vehicle_Type = 'Prime Sedan';
+
+Finds the highest and lowest driver ratings for "Prime Sedan" vehicle type.
+
+8. Query # 7. Retrieve all rides where payment was made using UPI:-
+Code :-
+ 	SELECT * FROM ola
+ 	WHERE Payment_Method = 'UPI';
+
+Note :-
+	UPI Payment Rides
+	Lists all rides where payment was made through UPI.
+	SELECT * FROM ola WHERE Payment_Method = 'UPI';
+
+Retrieves all ride records where payment was made using UPI.
+
+9. Query # 8. Find the average customer rating per vehicle type:-
+Code :-
+ 	SELECT Vehicle_Type, AVG(Customer_Rating) as avg_customer_rating
+ 	FROM ola
+	GROUP BY Vehicle_Type;
+
+Note :-
+	Average Customer Rating per Vehicle Type
+	Calculates the average rating given by customers for each vehicle type.
+	SELECT Vehicle_Type, AVG(Customer_Rating) AS avg_customer_rating FROM ola GROUP BY Vehicle_Type;
+
+This query calculates the average customer rating for each type of vehicle by grouping data based on Vehicle_Type.
+
+10. Query # 9. Calculate the total booking value of rides completed successfully:-
+Code :-
+ 	SELECT SUM(Booking_Value) as total_successful_ride_value
+	FROM ola
+ 	WHERE Booking_Status = 'Success';
+
+Note :-
+	Total Booking Value of Successful Rides
+	Computes the total value of all rides marked as successful.
+	SELECT SUM(Booking_Value) AS total_successful_ride_value FROM ola WHERE Booking_Status = 'Success';
+
+Computes the sum of the Booking_Value for all rides that were marked as successfully completed.
+
+11. Query # 10. List all incomplete rides along with the reason:-
+Code :-
+ 	SELECT Booking_ID, Incomplete_Rides_Reason
+ 	FROM ola
+ 	WHERE Incomplete_Rides = 'Yes';
+
+Note :-
+	Incomplete Rides with Reason
+	Retrieves ride IDs and reasons for incomplete rides.
+	SELECT Booking_ID, Incomplete_Rides_Reason FROM ola WHERE Incomplete_Rides = 'Yes';
+
+Retrieves all rides that were not completed, along with the reason.
+
+Summary :-
+
+🔹 Database Setup
+
+A new database ola is created and accessed.
+
+Data from the ola table is retrieved for analysis.
+
+🔹 Customer & Booking Insights
+
+Successful Bookings: Filter bookings with status 'Success'.
+
+Cancelled Rides by Customers: Count how many rides were canceled by customers.
+
+Top Customers: Identify the top 5 customers with the most bookings.
+
+Incomplete Rides: List incomplete bookings with their reasons.
+
+🔹 Driver & Vehicle Analysis
+
+Average Ride Distance: Calculated per vehicle type.
+
+Driver Ratings: Find the max and min ratings for Prime Sedan drivers.
+
+Ride Cancellations by Drivers: Count based on personal or car-related issues.
+
+🔹 Payment & Revenue Insights
+
+UPI Payments: Retrieve rides paid through UPI.
+
+Total Booking Value: Sum of all successful ride payments.
+
+🔹 Customer Experience
+
+Average Customer Ratings: Measured per vehicle type.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
